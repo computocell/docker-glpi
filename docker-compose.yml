@@ -1,13 +1,16 @@
 services:
-# PostgreSQL Container
-  postgres:
-    image: postgres:15-alpine
-    container_name: postgres_glpi
-    hostname: postgres
+# MariaDB Container
+  mariadb:
+    image: mariadb:10.11
+    container_name: mariadb
+    hostname: mariadb
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-    env_file:
-      - ./postgresql.env 
+      - mariadb_data:/var/lib/mysql
+    environment:
+      - MARIADB_ROOT_PASSWORD=${SENHA_ROOT}
+      - MARIADB_DATABASE=${DATABASE_NAME}
+      - MARIADB_USER=${USUARIO_GLPI}
+      - MARIADB_PASSWORD=${SENHA_GLPI}
     restart: unless-stopped
     networks:
       - minha_rede
