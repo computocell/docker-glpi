@@ -1,20 +1,20 @@
 services:
-#MariaDB Container
-  mariadb:
-    image: mariadb:10.7
-    container_name: mariadb
-    hostname: mariadb
+# PostgreSQL Container
+  postgres:
+    image: postgres:15-alpine
+    container_name: postgres_glpi
+    hostname: postgres
     volumes:
-      - mariadb_data:/var/lib/mysql
+      - postgres_data:/var/lib/postgresql/data
     env_file:
-      - ./mariadb.env
-    restart: always
+      - ./postgresql.env 
+    restart: unless-stopped
     networks:
       - minha_rede
 
 #GLPI Container
   glpi:
-    image: glpi/glpi:11.0.8
+    image: glpi/glpi:11.0.9
     container_name : glpi
     hostname: glpi
     ports:
@@ -38,7 +38,7 @@ services:
       - minha_rede
 
 volumes:
-  mariadb_data:
+  postgres_data:
 
 networks:
   minha_rede:
