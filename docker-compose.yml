@@ -41,7 +41,7 @@ services:
       - minha_rede
 
 volumes:
-  postgres_data:
+  mariadb_data:
 
 networks:
   minha_rede:
