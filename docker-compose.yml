@@ -16,11 +16,11 @@ services:
 
 #GLPI Container
   glpi:
-    image: diouxx/glpi
+    image: glpi/glpi:11.0.8
     container_name : glpi
     hostname: glpi
     ports:
-      - "8085:80"
+      - "8083:80"
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - ./data/localtime/Sao_Paulo:/etc/localtime:ro
